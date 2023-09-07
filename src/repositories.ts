@@ -137,7 +137,6 @@ export const repositories = repoConfigurations.map((r) => {
 
 		allowsDeletions: false,
 		allowsForcePushes: false,
-		blocksCreations: true,
 		lockBranch: false,
 
 		requireConversationResolution: true,

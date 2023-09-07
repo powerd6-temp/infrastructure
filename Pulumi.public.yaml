@@ -4,5 +4,5 @@ config:
   github:owner: powerd6
   github:token:
     secure: AAABAHAK/MjKVVztia26s4sQrzfXVVsGjyq5yDxVU2h2OAMgRaqgEwmgnYXl4P7im9w2EaMmnxalo1j37vSMiK41CviXyt14zV1ha+KFWUMD3BMdnxdFe4HVuNWIyaEprJiGUIFB3PGZJUmY3tA+A2iidGLHlAqxldrkQTA=
-  infrastructure:email-contact-password:
-    secure: AAABAPFhLWiEKj12ln2AA4SqoeT20oVBV+K/DldmqqYI6TRm/tOpXd6wF4fC5DuxRJBq+cJMbSX0XJENZ8vLtWiRNgpCaePWHZfVpSd92s6a1kWB8d7vypT2zUpfpK2/XD2DspH4+ZkPo3WDgrqaaqFSyW/9O6r75oV+jtBlagiW9x7YpAASPVb7ZhQcTsq8arYGdA5dsKcR++Ok
+  infrastructure:improvmx-api-key:
+    secure: AAABABlslHwag4zCC9uJUxztIvmzcdWaKKsJH8v3MsJQ4mOIXkZkaKKPL2RIk1L+Y3BH9eYKRuL9Z4G4ch/xYVgC9Q==

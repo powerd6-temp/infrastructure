@@ -18,6 +18,7 @@ This repository includes all necessary configurations to set-up the project's in
   - Gandi.net
     - Domains
     - DNS
+  - ImprovMX
     - Email
 
 
@@ -38,3 +39,5 @@ This repository includes all necessary configurations to set-up the project's in
      - issues
 ### Gandi.net
 This provider uses a (deprecated) API key: https://account.gandi.net/
+### ImprovMX
+This provides uses a simple API key.
