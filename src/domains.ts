@@ -31,8 +31,6 @@ export const rootDomain = new gandi.domains.Domain('powerd6/rootDomain', {
     tech: domainOwner,
 
     autorenew: true,
-
-    tags: ['powerd6', 'root']
 }, {
     protect: true,
 })
@@ -106,7 +104,7 @@ githubPagesChallenges.map(challenge => new gandi.livedns.Record(`powerd6/rootDom
 // Github pages subdomains
 const githubPagesSubdomains = [
     "www",
-    "specification"
+    // "specification"
 ]
 
 githubPagesSubdomains.map(subdomain => new gandi.livedns.Record(`powerd6/rootDomain/nameServer/githubPages/${slugify(subdomain)}`, {
