@@ -1,4 +1,5 @@
 import * as gandi from "@pulumiverse/gandi";
+import { slugify } from "./slugify";
 
 const domainOwner = {
     city: 'Malpica de Bergantiños',
@@ -81,5 +82,44 @@ export const AAAA_atDnsRecord = new gandi.livedns.Record('powerd6/rootDomain/nam
     parent: nameservers,
 })
 
+// Github pages verification
+const githubPagesChallenges = [
+    {
+        name: "_github-pages-challenge-powerd6",
+        value: "521616339ac469a83d727cdff6a20a"
+    }
+]
+
+githubPagesChallenges.map(challenge => new gandi.livedns.Record(`powerd6/rootDomain/nameServer/githubPages/challenge/${slugify(challenge.name)}`, {
+    name: challenge.name,
+    ttl: 10800,
+    type: "TXT",
+    values: [
+        challenge.value
+    ],
+    zone: rootDomain.id,
+}, {
+    dependsOn: [nameservers],
+    parent: nameservers
+}))
+
+// Github pages subdomains
+const githubPagesSubdomains = [
+    "www",
+    "specification"
+]
+
+githubPagesSubdomains.map(subdomain => new gandi.livedns.Record(`powerd6/rootDomain/nameServer/githubPages/${slugify(subdomain)}`, {
+    name: subdomain,
+    ttl: 10800,
+    type: "TXT",
+    values: [
+        "powerd6.github.io"
+    ],
+    zone: rootDomain.id,
+}, {
+    dependsOn: [nameservers],
+    parent: nameservers
+}))
 
 export const domains = [rootDomain,].map(d => d.name)

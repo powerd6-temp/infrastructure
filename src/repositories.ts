@@ -3,6 +3,7 @@ import * as pulumi from "@pulumi/pulumi"
 import { org } from './organizations'
 import { readFileSync } from "fs"
 import { resolve } from "path";
+import { slugify } from "./slugify";
 
 const bypassesUsers = [
 	"/HectorCastelli",
@@ -67,6 +68,16 @@ const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
 	{
 		name: "branding",
 		description: "The branding artifacts for the project.",
+	},
+	{
+		name: "landing_page",
+		description: "The landing page for the project.",
+		homepageUrl: "powerd6.org",
+		// pages: {
+		// 	buildType: "workflow",
+		// 	cname: "powerd6.org",
+		// 	status: "enabled",
+		// }
 	},
 ]
 
@@ -220,12 +231,3 @@ export const repositories = repoConfigurations.map((r) => {
 	}
 })
 
-function slugify(text: pulumi.Input<string>): string {
-	return text.toString().toLowerCase().trim()
-		.normalize('NFD') 				 // separate accent from letter
-		.replace(/[\u0300-\u036f]/g, '') // remove all separated accents
-		.replace(/\s+/g, '-')            // replace spaces with -
-		.replace(/&/g, '-and-')          // replace & with 'and'
-		.replace(/[^\w\-]+/g, '')        // remove all non-word chars
-		.replace(/\-\-+/g, '-')          // replace multiple '-' with single '-'
-}
