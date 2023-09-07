@@ -16,3 +16,6 @@ This repository includes all necessary configurations to set-up the project's in
     - Repositories
     - Pages
   - Gandi.net
+    - Domains
+    - DNS
+    - Email
