@@ -19,3 +19,28 @@ This repository includes all necessary configurations to set-up the project's in
     - Domains
     - DNS
     - Email
+
+
+## Required access:
+
+### Github
+- Organization permissions
+  - Read and Write access to:
+    - members
+    - organization administration
+    - organization projects
+- Repository permissions
+  - Read access to:
+    - metadata
+  - Read and Write access to:
+    - administration
+     - code
+     - issues
+### Gandi.net
+- Manage owner changes & outgoing transfers
+- Manage domain contacts
+- Manage domain name technical configurations
+- See and renew domain names
+- Manage mailboxes and email forwarding
+- Manage Organization
+- View Organization
