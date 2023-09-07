@@ -1,0 +1,3 @@
+name: infrastructure
+runtime: nodejs
+description: The shared infrastructure for the powerd6 project.
