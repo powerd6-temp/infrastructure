@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "powerd6",
+        "pulumi"
     ],
     "Workspace_Formatter.excludePattern": [
         "**/.*",

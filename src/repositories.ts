@@ -1,6 +1,6 @@
 import * as github from "@pulumi/github"
 import * as pulumi from "@pulumi/pulumi"
-import {org} from './organizations'
+import { org } from './organizations'
 import { readFileSync } from "fs"
 import { resolve } from "path";
 

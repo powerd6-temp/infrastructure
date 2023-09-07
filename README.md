@@ -37,10 +37,4 @@ This repository includes all necessary configurations to set-up the project's in
      - code
      - issues
 ### Gandi.net
-- Manage owner changes & outgoing transfers
-- Manage domain contacts
-- Manage domain name technical configurations
-- See and renew domain names
-- Manage mailboxes and email forwarding
-- Manage Organization
-- View Organization
+This provider uses a (deprecated) API key: https://account.gandi.net/
