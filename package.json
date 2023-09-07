@@ -1,9 +1,12 @@
 {
   "name": "infrastructure",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.2",
-    "@types/node": "^20"
+    "@types/node": "^20",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint": "^8.48.0"
   },
   "dependencies": {
     "@pulumi/github": "^5.17.0",
