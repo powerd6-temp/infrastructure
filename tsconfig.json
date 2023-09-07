@@ -13,7 +13,7 @@
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true
     },
-    "files": [
-        "src/"
-    ]
+    "include": [
+        "src/**/*",
+    ],
 }

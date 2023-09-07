@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "powerd6",
+    ],
+    "Workspace_Formatter.excludePattern": [
+        "**/.*",
+        "**/.vscode",
+        "**/bin",
+        "**/node_modules",
+    ]
+}

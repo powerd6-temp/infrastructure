@@ -1,5 +1,5 @@
 import * as github from "@pulumi/github"
-import {repositories as repos} from "./repositories"
+import { repositories as repos } from "./repositories"
 
 const org = new github.OrganizationSettings("powerd6", {
 	name: "powerd6",
@@ -20,7 +20,7 @@ const org = new github.OrganizationSettings("powerd6", {
 	// Projects
 	hasOrganizationProjects: true,
 	hasRepositoryProjects: true,
-    
+
 	// Github Pages
 	membersCanCreatePages: true,
 	membersCanCreatePrivatePages: false,
@@ -39,4 +39,4 @@ const org = new github.OrganizationSettings("powerd6", {
 },)
 
 export const organization = org.name
-export const repositories = repos.map(r=>r.name)
+export const repositories = repos.map(r => r.name)
