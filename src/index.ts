@@ -27,7 +27,6 @@ const org = new github.OrganizationSettings("powerd6", {
 	membersCanCreatePublicPages: true,
 
 	// Security features
-	advancedSecurityEnabledForNewRepositories: true,
 	dependabotAlertsEnabledForNewRepositories: true,
 	dependabotSecurityUpdatesEnabledForNewRepositories: true,
 	dependencyGraphEnabledForNewRepositories: true,
@@ -39,4 +38,4 @@ const org = new github.OrganizationSettings("powerd6", {
 },)
 
 export const organization = org.name
-export const repositories = repos.map(r => r.name)
+export const repositories = repos

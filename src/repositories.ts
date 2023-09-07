@@ -120,14 +120,14 @@ export const repositories = repoConfigurations.map((r) => {
 		...r,
 	})
 
-	const mainBranch = new github.Branch(`${r.name}MainBranch`, {
+	const mainBranch = new github.Branch(`${r.name}/Branch/Main`, {
 		branch: "main",
 		repository: repo.name,
 	}, {
 		dependsOn: [repo,],
 	})
 
-	const branchProtection = new github.BranchProtection(`${r.name}MainBranchProtection`, {
+	const branchProtection = new github.BranchProtection(`${r.name}/BranchProtection/Main`, {
 		repositoryId: repo.nodeId,
 		pattern: mainBranch.branch,
 
@@ -162,7 +162,7 @@ export const repositories = repoConfigurations.map((r) => {
 		dependsOn: [mainBranch,],
 	})
 
-	const licenseFile = new github.RepositoryFile(`${r.name}LicenseFile`, {
+	const licenseFile = new github.RepositoryFile(`${r.name}/Files/License`, {
 		repository: repo.name,
 		branch: mainBranch.branch,
 		file: "LICENSE.md",
@@ -175,7 +175,7 @@ export const repositories = repoConfigurations.map((r) => {
 		dependsOn: [mainBranch, branchProtection],
 	})
 
-	const contributingFile = new github.RepositoryFile(`${r.name}ContributingFile`, {
+	const contributingFile = new github.RepositoryFile(`${r.name}/Files/Contributing`, {
 		repository: repo.name,
 		branch: mainBranch.branch,
 		file: "CONTRIBUTING.md",
@@ -188,16 +188,29 @@ export const repositories = repoConfigurations.map((r) => {
 		dependsOn: [mainBranch, branchProtection],
 	})
 
-	labelConfiguration.forEach(labelConfig => {
-		const label = new github.IssueLabel(`${r.name}/IssueLabel/${slugify(labelConfig.name)}`, {
+	const labels = labelConfiguration.map(labelConfig => 
+		new github.IssueLabel(`${r.name}/IssueLabel/${slugify(labelConfig.name)}`, {
 			repository: repo.name,
 			...labelConfig,
 		}, {
 			dependsOn: [repo]
 		})
-	})
+	)
 
-	return repo
+	return {
+		repository: repo.name,
+		branches: [
+			mainBranch.branch,
+		],
+		branchProtection: [
+			branchProtection.id,
+		],
+		files: [
+			licenseFile.file,
+			contributingFile.file,
+		],
+		labels: labels.map(l=>l.name)
+	}
 })
 
 function slugify(text: pulumi.Input<string>) : string {
