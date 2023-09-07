@@ -1,5 +1,6 @@
 import * as github from "@pulumi/github"
 import * as pulumi from "@pulumi/pulumi"
+import {org} from './organizations'
 import { readFileSync } from "fs"
 import { resolve } from "path";
 
@@ -70,7 +71,7 @@ const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
 ]
 
 const labelConfiguration: Array<{
-	name: pulumi.Input<string>; description: pulumi.Input<string>; color: pulumi.Input<string>; 
+	name: pulumi.Input<string>; description: pulumi.Input<string>; color: pulumi.Input<string>;
 }> = [
 		{
 			name: "goal: addition",
@@ -118,6 +119,8 @@ export const repositories = repoConfigurations.map((r) => {
 	const repo = new github.Repository(r.name, {
 		...defaultRepositoryOptions,
 		...r,
+	}, {
+		parent: org
 	})
 
 	const mainBranch = new github.Branch(`${r.name}/Branch/Main`, {
@@ -125,9 +128,10 @@ export const repositories = repoConfigurations.map((r) => {
 		repository: repo.name,
 	}, {
 		dependsOn: [repo,],
+		parent: repo
 	})
 
-	const branchProtection = new github.BranchProtection(`${r.name}/BranchProtection/Main`, {
+	const mainBranchProtection = new github.BranchProtection(`${r.name}/BranchProtection/Main`, {
 		repositoryId: repo.nodeId,
 		pattern: mainBranch.branch,
 
@@ -160,6 +164,7 @@ export const repositories = repoConfigurations.map((r) => {
 
 	}, {
 		dependsOn: [mainBranch,],
+		parent: mainBranch
 	})
 
 	const licenseFile = new github.RepositoryFile(`${r.name}/Files/License`, {
@@ -172,7 +177,8 @@ export const repositories = repoConfigurations.map((r) => {
 		commitMessage: "Updating LICENSE.md . Managed by infrastructure.",
 		overwriteOnCreate: true,
 	}, {
-		dependsOn: [mainBranch, branchProtection],
+		dependsOn: [mainBranch, mainBranchProtection],
+		parent: repo
 	})
 
 	const contributingFile = new github.RepositoryFile(`${r.name}/Files/Contributing`, {
@@ -185,15 +191,17 @@ export const repositories = repoConfigurations.map((r) => {
 		commitMessage: "Updating CONTRIBUTING.md . Managed by infrastructure.",
 		overwriteOnCreate: true,
 	}, {
-		dependsOn: [mainBranch, branchProtection],
+		dependsOn: [mainBranch, mainBranchProtection],
+		parent: repo
 	})
 
-	const labels = labelConfiguration.map(labelConfig => 
+	const labels = labelConfiguration.map(labelConfig =>
 		new github.IssueLabel(`${r.name}/IssueLabel/${slugify(labelConfig.name)}`, {
 			repository: repo.name,
 			...labelConfig,
 		}, {
-			dependsOn: [repo]
+			dependsOn: [repo],
+			parent: repo
 		})
 	)
 
@@ -203,22 +211,22 @@ export const repositories = repoConfigurations.map((r) => {
 			mainBranch.branch,
 		],
 		branchProtection: [
-			branchProtection.id,
+			mainBranchProtection.id,
 		],
 		files: [
 			licenseFile.file,
 			contributingFile.file,
 		],
-		labels: labels.map(l=>l.name)
+		labels: labels.map(l => l.name)
 	}
 })
 
-function slugify(text: pulumi.Input<string>) : string {
+function slugify(text: pulumi.Input<string>): string {
 	return text.toString().toLowerCase().trim()
-	  .normalize('NFD') 				 // separate accent from letter
-	  .replace(/[\u0300-\u036f]/g, '') // remove all separated accents
-	  .replace(/\s+/g, '-')            // replace spaces with -
-	  .replace(/&/g, '-and-')          // replace & with 'and'
-	  .replace(/[^\w\-]+/g, '')        // remove all non-word chars
-	  .replace(/\-\-+/g, '-')          // replace multiple '-' with single '-'
-  }
+		.normalize('NFD') 				 // separate accent from letter
+		.replace(/[\u0300-\u036f]/g, '') // remove all separated accents
+		.replace(/\s+/g, '-')            // replace spaces with -
+		.replace(/&/g, '-and-')          // replace & with 'and'
+		.replace(/[^\w\-]+/g, '')        // remove all non-word chars
+		.replace(/\-\-+/g, '-')          // replace multiple '-' with single '-'
+}

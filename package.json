@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@pulumi/github": "^5.17.0",
-    "@pulumi/pulumi": "^3.81.0"
+    "@pulumi/pulumi": "^3.81.0",
+    "@pulumiverse/gandi": "^0.0.14"
   }
 }
