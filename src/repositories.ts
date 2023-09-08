@@ -3,7 +3,7 @@ import * as pulumi from "@pulumi/pulumi";
 import { organization } from "./organizations";
 import { readFileSync } from "fs";
 import { resolve } from "path";
-import { slugify } from "./slugify";
+import { slugify } from "./helpers/slugify";
 
 const bypassesUsers = ["/HectorCastelli"];
 

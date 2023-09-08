@@ -1,5 +1,5 @@
 import * as gandi from "@pulumiverse/gandi";
-import { slugify } from "./slugify";
+import { slugify } from "./helpers/slugify";
 
 const domainOwner = {
   city: "Malpica de Bergantiños",
