@@ -91,12 +91,11 @@ const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
       includeAllBranches: false,
       owner: "powerd6",
       repository: "template_website",
+    },
+    pages: {
+      buildType: "workflow",
+      cname: "powerd6.org",
     }
-    // pages: {
-    // 	buildType: "workflow",
-    // 	cname: "powerd6.org",
-    // 	status: "enabled",
-    // }
   },
 ];
 
