@@ -1,6 +1,6 @@
 import * as github from "@pulumi/github"
 
-export const org = new github.OrganizationSettings("powerd6", {
+export const organization = new github.OrganizationSettings("powerd6", {
 	name: "powerd6",
 	description: "An exciting way to create, extend, and share tabletop role-playing games.",
 	billingEmail: "contact@powerd6.org",

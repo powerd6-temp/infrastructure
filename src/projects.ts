@@ -1,5 +1,5 @@
 import * as github from "@pulumi/github";
-import { org } from ".";
+import { organization } from "./organizations";
 
 /*
 * FIXME: re-enable this feature when GitHub's API supports project creation without failing.
@@ -10,13 +10,15 @@ export const roadmapProject = new github.OrganizationProject("powerd6/Projects/r
 	name: "Roadmap",
 	body: "A visual representation of the short, and long term priorities and goals.",
 }, {
-	dependsOn: [org],
-	parent: org,
+	dependsOn: [organization],
+	parent: organization,
 });
 export const ideasProject = new github.OrganizationProject("powerd6/Projects/moduleIdeas", {
 	name: "Module Ideas",
 	body: "A collection of module ideas, open for anyone to add, comment, and even implement.",
 }, {
-	dependsOn: [org],
-	parent: org,
+	dependsOn: [organization],
+	parent: organization,
 });
+
+export const projects = [roadmapProject, ideasProject].map(p => p.name)

@@ -29,7 +29,7 @@ export const spfRecord = new gandi.livedns.Record('powerd6/rootDomain/nameServer
 }, {
     dependsOn: [nameservers],
     parent: nameservers,
-    
+
 })
 
 const cfg = new pulumi.Config();
@@ -42,4 +42,4 @@ const contactAlias = new ImprovMxAlias("powerd6/email/contact", {
 });
 
 
-export const emails = [contactAlias].map(e=>e.aliasId);
+export const emails = [contactAlias].map(e => e.aliasId);

@@ -32,6 +32,6 @@ export class ImprovMxAlias extends pulumi.ComponentResource {
         })
 
         const response = alias.stdout.apply(JSON.parse);
-        this.aliasId =response.apply((x:any) => x.alias.id as string);
+        this.aliasId = response.apply((x: any) => x.alias.id as string);
     }
 }

@@ -1,6 +1,6 @@
 import * as github from "@pulumi/github"
 import * as pulumi from "@pulumi/pulumi"
-import { org } from './organizations'
+import { organization } from './organizations'
 import { readFileSync } from "fs"
 import { resolve } from "path";
 import { slugify } from "./slugify";
@@ -131,7 +131,7 @@ export const repositories = repoConfigurations.map((r) => {
 		...defaultRepositoryOptions,
 		...r,
 	}, {
-		parent: org
+		parent: organization
 	})
 
 	const mainBranch = new github.Branch(`${r.name}/Branch/Main`, {
