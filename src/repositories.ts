@@ -76,6 +76,14 @@ const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
     description: "The branding artifacts for the project.",
   },
   {
+    name: "template_website",
+    description: "A website, with testing and configuration pre-made.",
+    isTemplate: true,
+    pages: {
+      buildType: "workflow",      
+    }
+  },
+  {
     name: "landing_page",
     description: "The landing page for the project.",
     homepageUrl: "powerd6.org",
