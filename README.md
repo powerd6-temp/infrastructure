@@ -4,10 +4,10 @@ The shared infrastructure for the powerd6 project.
 
 This repository includes all necessary configurations to set-up the project's infrastructure, including external service providers.
 
-
 ## Tech Stack
 
 - **Tools:**
+
   - Pulumi
 
 - **Managed Services:**
@@ -21,10 +21,10 @@ This repository includes all necessary configurations to set-up the project's in
   - ImprovMX
     - Email
 
-
 ## Required access:
 
 ### Github
+
 - Organization permissions
   - Read and Write access to:
     - members
@@ -35,9 +35,13 @@ This repository includes all necessary configurations to set-up the project's in
     - metadata
   - Read and Write access to:
     - administration
-     - code
-     - issues
+    - code
+    - issues
+
 ### Gandi.net
+
 This provider uses a (deprecated) API key: https://account.gandi.net/
+
 ### ImprovMX
+
 This provides uses a simple API key.

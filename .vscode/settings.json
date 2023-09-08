@@ -1,13 +1,9 @@
 {
-    "cSpell.words": [
-        "ImprovMx",
-        "powerd6",
-        "pulumi"
-    ],
-    "Workspace_Formatter.excludePattern": [
-        "**/.*",
-        "**/.vscode",
-        "**/bin",
-        "**/node_modules",
-    ]
+  "cSpell.words": ["ImprovMx", "powerd6", "pulumi"],
+  "Workspace_Formatter.excludePattern": [
+    "**/.*",
+    "**/.vscode",
+    "**/bin",
+    "**/node_modules"
+  ]
 }
