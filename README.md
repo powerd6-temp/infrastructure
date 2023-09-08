@@ -37,6 +37,7 @@ This repository includes all necessary configurations to set-up the project's in
     - administration
     - code
     - issues
+    - pages
 
 ### Gandi.net
 
