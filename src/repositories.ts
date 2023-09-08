@@ -64,6 +64,10 @@ const contributingFileContent = readFileSync(
 
 const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
   {
+    name: ".github",
+    description: "The location for Github-specific artifacts, actions, and shared workflows.",
+  },
+  {
     name: "infrastructure",
     description: "The shared infrastructure for the powerd6 project.",
   },
