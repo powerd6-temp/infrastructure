@@ -1,3 +1,6 @@
 {
-  "recommendations": ["franneck94.workspace-formatter"]
+  "recommendations": [
+    "franneck94.workspace-formatter",
+    "esbenp.prettier-vscode"
+  ]
 }
