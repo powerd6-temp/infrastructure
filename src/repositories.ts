@@ -83,16 +83,21 @@ const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
       buildType: "workflow",
     }
   },
-  {
-    name: "landing_page",
-    description: "The landing page for the project.",
-    homepageUrl: "powerd6.org",
-    // pages: {
-    // 	buildType: "workflow",
-    // 	cname: "powerd6.org",
-    // 	status: "enabled",
-    // }
-  },
+  // {
+  //   name: "landing_page",
+  //   description: "The landing page for the project.",
+  //   homepageUrl: "powerd6.org",
+  //   template: {
+  //     includeAllBranches: false,
+  //     owner: "powerd6",
+  //     repository: "template_website",
+  //   }
+  //   // pages: {
+  //   // 	buildType: "workflow",
+  //   // 	cname: "powerd6.org",
+  //   // 	status: "enabled",
+  //   // }
+  // },
 ];
 
 const labelConfiguration: Array<{
