@@ -80,7 +80,7 @@ const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
     description: "A website, with testing and configuration pre-made.",
     isTemplate: true,
     pages: {
-      buildType: "workflow",      
+      buildType: "workflow",
     }
   },
   {
@@ -100,47 +100,47 @@ const labelConfiguration: Array<{
   description: pulumi.Input<string>;
   color: pulumi.Input<string>;
 }> = [
-  {
-    name: "goal: addition",
-    description: "Addition of a new feature",
-    color: "ffffff",
-  },
-  {
-    name: "goal: improvement",
-    description: "Improvement to an existing feature",
-    color: "ffffff",
-  },
-  {
-    name: "goal: fix",
-    description: "Bug fix",
-    color: "ffffff",
-  },
-  {
-    name: "good first issue",
-    description: "New-contributor friendly",
-    color: "7f0799",
-  },
-  {
-    name: "help wanted",
-    description: "Open to participation from the community",
-    color: "7f0799",
-  },
-  {
-    name: "priority: high",
-    description: "Stalls work on the project or its dependents",
-    color: "ff9f1c",
-  },
-  {
-    name: "priority: medium",
-    description: "Not blocking but should be fixed soon",
-    color: "ffcc00",
-  },
-  {
-    name: "priority: low",
-    description: "Low priority and doesn't need to be rushed",
-    color: "cfda2c",
-  },
-];
+    {
+      name: "goal: addition",
+      description: "Addition of a new feature",
+      color: "ffffff",
+    },
+    {
+      name: "goal: improvement",
+      description: "Improvement to an existing feature",
+      color: "ffffff",
+    },
+    {
+      name: "goal: fix",
+      description: "Bug fix",
+      color: "ffffff",
+    },
+    {
+      name: "good first issue",
+      description: "New-contributor friendly",
+      color: "7f0799",
+    },
+    {
+      name: "help wanted",
+      description: "Open to participation from the community",
+      color: "7f0799",
+    },
+    {
+      name: "priority: high",
+      description: "Stalls work on the project or its dependents",
+      color: "ff9f1c",
+    },
+    {
+      name: "priority: medium",
+      description: "Not blocking but should be fixed soon",
+      color: "ffcc00",
+    },
+    {
+      name: "priority: low",
+      description: "Low priority and doesn't need to be rushed",
+      color: "cfda2c",
+    },
+  ];
 
 export const repositories = repoConfigurations.map((r) => {
   const repo = new github.Repository(
@@ -237,6 +237,7 @@ export const repositories = repoConfigurations.map((r) => {
     {
       dependsOn: [mainBranch, mainBranchProtection],
       parent: repo,
+      deletedWith: repo
     },
   );
 
@@ -251,6 +252,7 @@ export const repositories = repoConfigurations.map((r) => {
         {
           dependsOn: [repo],
           parent: repo,
+          deletedWith: repo
         },
       ),
   );
