@@ -97,11 +97,16 @@ export const AAAA_atDnsRecord = new gandi.livedns.Record(
 );
 
 // Github pages verification
+// Should be added on https://github.com/organizations/powerd6/settings/pages for verification
 const githubPagesChallenges = [
   {
     name: "_github-pages-challenge-powerd6",
     value: "521616339ac469a83d727cdff6a20a",
   },
+  {
+    name: "_github-pages-challenge-powerd6.docs",
+    value: "85da44e91b028e65394398c9f260ca",
+  }
 ];
 
 githubPagesChallenges.map(
@@ -127,7 +132,7 @@ githubPagesChallenges.map(
 // Github pages subdomains
 const githubPagesSubdomains = [
   "www",
-  // "specification"
+  "docs"
 ];
 
 githubPagesSubdomains.map(
