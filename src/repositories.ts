@@ -97,6 +97,20 @@ const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
       cname: "powerd6.org",
     }
   },
+  {
+    name: "documentation",
+    description: "The knowledge base for the project",
+    homepageUrl: "docs.powerd6.org",
+    template: {
+      includeAllBranches: false,
+      owner: "powerd6",
+      repository: "template_website",
+    },
+    pages: {
+      buildType: "workflow",
+      cname: "docs.powerd6.org",
+    }
+  },
 ];
 
 const labelConfiguration: Array<{
