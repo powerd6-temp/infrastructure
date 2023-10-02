@@ -6,5 +6,3 @@ config:
     secure: AAABAHAK/MjKVVztia26s4sQrzfXVVsGjyq5yDxVU2h2OAMgRaqgEwmgnYXl4P7im9w2EaMmnxalo1j37vSMiK41CviXyt14zV1ha+KFWUMD3BMdnxdFe4HVuNWIyaEprJiGUIFB3PGZJUmY3tA+A2iidGLHlAqxldrkQTA=
   infrastructure:improvmx-api-key:
     secure: AAABABlslHwag4zCC9uJUxztIvmzcdWaKKsJH8v3MsJQ4mOIXkZkaKKPL2RIk1L+Y3BH9eYKRuL9Z4G4ch/xYVgC9Q==
-  infrastructure:test:
-    secure: AAABACB53ZHKY3mg9WKi0FQDjg4kEzk2dl3BngRHpp2cQ+/ItbGw
