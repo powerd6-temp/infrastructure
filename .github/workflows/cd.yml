@@ -13,6 +13,7 @@ concurrency:
   cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
 env:
   NODE_VERSION: 20.4.0
+  PULUMI_STACK_NAME: powerd6/infrastructure/public
 jobs:
   preview:
     name: Preview
@@ -29,7 +30,7 @@ jobs:
     - uses: pulumi/actions@v3
       with:
         command: preview
-        stack-name: powerd6/infrastructure
+        stack-name: ${{ env.PULUMI_STACK_NAME }}
       env:
         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
   deploy:
@@ -52,6 +53,6 @@ jobs:
       - uses: pulumi/actions@v3
         with:
           command: up
-          stack-name: powerd6/infrastructure
+          stack-name: ${{ env.PULUMI_STACK_NAME }}
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
