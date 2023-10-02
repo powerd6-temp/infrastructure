@@ -143,7 +143,7 @@ githubPagesSubdomains.map(
         name: subdomain,
         ttl: 10800,
         type: "CNAME",
-        values: ["powerd6.github.io"],
+        values: ["powerd6.github.io."],
         zone: rootDomain.id,
       },
       {
