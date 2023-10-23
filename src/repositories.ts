@@ -1,9 +1,8 @@
 import * as github from "@pulumi/github";
 import * as pulumi from "@pulumi/pulumi";
 import { organization } from "./organizations";
-import { readFileSync } from "fs";
-import { resolve } from "path";
 import { slugify } from "./helpers/slugify";
+import { getRepositoryFiles } from "./repositoryFiles";
 
 const bypassesUsers = ["/HectorCastelli"];
 
@@ -52,15 +51,6 @@ const defaultRepositoryOptions = {
     },
   },
 };
-
-const licenseFileContent = readFileSync(
-  resolve(__dirname, "../content/LICENSE.md"),
-  "utf-8",
-);
-const contributingFileContent = readFileSync(
-  resolve(__dirname, "../content/CONTRIBUTING.md"),
-  "utf-8",
-);
 
 const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
   {
@@ -222,42 +212,7 @@ export const repositories = repoConfigurations.map((r) => {
     },
   );
 
-  const licenseFile = new github.RepositoryFile(
-    `${r.name}/Files/License`,
-    {
-      repository: repo.name,
-      branch: mainBranch.branch,
-      file: "LICENSE.md",
-      content: licenseFileContent,
-      commitAuthor: "powerd6/infrastructure",
-      commitEmail: "infrastructure@powerd6.org",
-      commitMessage: "Updating LICENSE.md . Managed by infrastructure.",
-      overwriteOnCreate: true,
-    },
-    {
-      dependsOn: [mainBranch, mainBranchProtection],
-      parent: repo,
-    },
-  );
-
-  const contributingFile = new github.RepositoryFile(
-    `${r.name}/Files/Contributing`,
-    {
-      repository: repo.name,
-      branch: mainBranch.branch,
-      file: "CONTRIBUTING.md",
-      content: contributingFileContent,
-      commitAuthor: "powerd6/infrastructure",
-      commitEmail: "infrastructure@powerd6.org",
-      commitMessage: "Updating CONTRIBUTING.md . Managed by infrastructure.",
-      overwriteOnCreate: true,
-    },
-    {
-      dependsOn: [mainBranch, mainBranchProtection],
-      parent: repo,
-      deletedWith: repo
-    },
-  );
+  const files = getRepositoryFiles(r, repo, mainBranch, mainBranchProtection);
 
   const labels = labelConfiguration.map(
     (labelConfig) =>
@@ -279,7 +234,9 @@ export const repositories = repoConfigurations.map((r) => {
     repository: repo.name,
     branches: [mainBranch.branch],
     branchProtection: [mainBranchProtection.id],
-    files: [licenseFile.file, contributingFile.file],
+    files: files.map(f=>f.file),
     labels: labels.map((l) => l.name),
   };
 });
+
+
