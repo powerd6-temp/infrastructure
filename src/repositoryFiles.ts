@@ -9,6 +9,7 @@ import { resolve } from "path";
 const files: Map<string, string> = new Map([
   ["License", "LICENSE.md"],
   ["Contributing", "CONTRIBUTING.md"],
+  ["DependabotAutoMerge", ".github/workflows/dependabot.yml"],
 ]);
 
 
