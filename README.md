@@ -38,6 +38,7 @@ This repository includes all necessary configurations to set-up the project's in
     - code
     - issues
     - pages
+    - workflows
 
 ### Gandi.net
 
