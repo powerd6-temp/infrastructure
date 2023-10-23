@@ -212,42 +212,7 @@ export const repositories = repoConfigurations.map((r) => {
     },
   );
 
-  const licenseFile = new github.RepositoryFile(
-    `${r.name}/Files/License`,
-    {
-      repository: repo.name,
-      branch: mainBranch.branch,
-      file: "LICENSE.md",
-      content: licenseFileContent,
-      commitAuthor: "powerd6/infrastructure",
-      commitEmail: "infrastructure@powerd6.org",
-      commitMessage: "Updating LICENSE.md . Managed by infrastructure.",
-      overwriteOnCreate: true,
-    },
-    {
-      dependsOn: [mainBranch, mainBranchProtection],
-      parent: repo,
-    },
-  );
-
-  const contributingFile = new github.RepositoryFile(
-    `${r.name}/Files/Contributing`,
-    {
-      repository: repo.name,
-      branch: mainBranch.branch,
-      file: "CONTRIBUTING.md",
-      content: contributingFileContent,
-      commitAuthor: "powerd6/infrastructure",
-      commitEmail: "infrastructure@powerd6.org",
-      commitMessage: "Updating CONTRIBUTING.md . Managed by infrastructure.",
-      overwriteOnCreate: true,
-    },
-    {
-      dependsOn: [mainBranch, mainBranchProtection],
-      parent: repo,
-      deletedWith: repo
-    },
-  );
+  const { licenseFile, contributingFile } = getRepositoryFiles(r, repo, mainBranch, mainBranchProtection);
 
   const labels = labelConfiguration.map(
     (labelConfig) =>
@@ -273,3 +238,44 @@ export const repositories = repoConfigurations.map((r) => {
     labels: labels.map((l) => l.name),
   };
 });
+
+function getRepositoryFiles(r: github.RepositoryArgs & { name: string; }, repo, mainBranch, mainBranchProtection) {
+  const licenseFile = new github.RepositoryFile(
+    `${r.name}/Files/License`,
+    {
+      repository: repo.name,
+      branch: mainBranch.branch,
+      file: "LICENSE.md",
+      content: licenseFileContent,
+      commitAuthor: "powerd6/infrastructure",
+      commitEmail: "infrastructure@powerd6.org",
+      commitMessage: "Updating LICENSE.md . Managed by infrastructure.",
+      overwriteOnCreate: true,
+    },
+    {
+      dependsOn: [mainBranch, mainBranchProtection],
+      parent: repo,
+    }
+  );
+
+  const contributingFile = new github.RepositoryFile(
+    `${r.name}/Files/Contributing`,
+    {
+      repository: repo.name,
+      branch: mainBranch.branch,
+      file: "CONTRIBUTING.md",
+      content: contributingFileContent,
+      commitAuthor: "powerd6/infrastructure",
+      commitEmail: "infrastructure@powerd6.org",
+      commitMessage: "Updating CONTRIBUTING.md . Managed by infrastructure.",
+      overwriteOnCreate: true,
+    },
+    {
+      dependsOn: [mainBranch, mainBranchProtection],
+      parent: repo,
+      deletedWith: repo
+    }
+  );
+  return { licenseFile, contributingFile };
+}
+
