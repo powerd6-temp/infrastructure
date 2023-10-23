@@ -3,6 +3,6 @@ config:
     secure: AAABAHeTSnA5lN5/Xh1v0GIOgrkqhPaLPMA0a/mDnJLXqxs4gRaEVX3Jbi/cd7lQ0wkYwwqjDQk=
   github:owner: powerd6
   github:token:
-    secure: AAABAPf+5iVmqd4k6CBuR9jdYtbRqTsObBJmfDllONQ3UKx56gs4bLzobo7ahWtNeMfnAH6BXQQeXHpRPNGwYtk9RcWkc7inRbnRdKGAnotmH3NDujOGNX6Rwbj5VY6id1rXM4rG4DYMyAAOw7yTNrsq4z7dhdeLrcqi1YY=
+    secure: AAABAGX/K/1zmWwR4/MNHhl9zfQJkWCD8yyFmPfMA4Bm0N/TdaVFTp0NJpxhRcRDEQws8eUJ7m30fbn+F31KQt65UT9/mUne3mwFFAChhAzz0zF+E8cnzzfcfMb3O6Ks5I7rXimj9RCfGBDz2QhcOJeRPZE8JK7jA1587rQ=
   infrastructure:improvmx-api-key:
     secure: AAABABlslHwag4zCC9uJUxztIvmzcdWaKKsJH8v3MsJQ4mOIXkZkaKKPL2RIk1L+Y3BH9eYKRuL9Z4G4ch/xYVgC9Q==
