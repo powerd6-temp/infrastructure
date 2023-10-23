@@ -45,4 +45,10 @@ const contactAlias = new ImprovMxAlias("powerd6/email/contact", {
   apiKey: cfg.requireSecret("improvmx-api-key"),
 });
 
-export const emails = [contactAlias].map((e) => e.aliasId);
+const billingAlias = new ImprovMxAlias("powerd6/email/billing", {
+  alias: "billing",
+  forward: "hector.zacharias@gmail.com",
+  domain: rootDomain.name,
+  apiKey: cfg.requireSecret("improvmx-api-key"),
+});
+export const emails = [contactAlias, billingAlias].map((e) => e.aliasId);

@@ -2,6 +2,7 @@ import { local } from "@pulumi/command";
 import * as pulumi from "@pulumi/pulumi";
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import { slugify } from "../../helpers/slugify";
 
 // From: https://improvmx.com/api/
 
@@ -20,7 +21,7 @@ export class ImprovMxAlias extends pulumi.ComponentResource {
     args: AliasArgs,
     opts?: pulumi.ComponentResourceOptions,
   ) {
-    super("improvmx:improvmx:Alias", name, args, opts);
+    super(`improvmx:improvmx:Alias:${slugify(name)}`, name, args, opts);
 
     const alias = new local.Command(
       "alias",
