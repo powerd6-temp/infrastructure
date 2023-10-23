@@ -1,9 +1,8 @@
 import * as github from "@pulumi/github";
 import * as pulumi from "@pulumi/pulumi";
 import { organization } from "./organizations";
-import { readFileSync } from "fs";
-import { resolve } from "path";
 import { slugify } from "./helpers/slugify";
+import { licenseFileContent, contributingFileContent } from "./repositoryFiles";
 
 const bypassesUsers = ["/HectorCastelli"];
 
@@ -52,15 +51,6 @@ const defaultRepositoryOptions = {
     },
   },
 };
-
-const licenseFileContent = readFileSync(
-  resolve(__dirname, "../content/LICENSE.md"),
-  "utf-8",
-);
-const contributingFileContent = readFileSync(
-  resolve(__dirname, "../content/CONTRIBUTING.md"),
-  "utf-8",
-);
 
 const repoConfigurations: Array<github.RepositoryArgs & { name: string }> = [
   {
