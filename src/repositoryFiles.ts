@@ -1,8 +1,6 @@
 import * as github from "@pulumi/github";
 import { readFileSync } from "fs";
 import { resolve } from "path";
-import { licenseFileContent, contributingFileContent } from "./repositoryFiles";
-import { licenseFileContent, contributingFileContent } from "./repositoryFiles";
 
 export const licenseFileContent = readFileSync(
   resolve(__dirname, "../content/LICENSE.md"),
@@ -11,7 +9,9 @@ export const licenseFileContent = readFileSync(
 export const contributingFileContent = readFileSync(
   resolve(__dirname, "../content/CONTRIBUTING.md"),
   "utf-8"
-);export function getRepositoryFiles(r: github.RepositoryArgs & { name: string; }, repo, mainBranch, mainBranchProtection) {
+);
+
+export function getRepositoryFiles(r: github.RepositoryArgs & { name: string; }, repo, mainBranch, mainBranchProtection) {
   const licenseFile = new github.RepositoryFile(
     `${r.name}/Files/License`,
     {
