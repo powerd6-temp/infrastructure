@@ -212,7 +212,7 @@ export const repositories = repoConfigurations.map((r) => {
     },
   );
 
-  const { licenseFile, contributingFile } = getRepositoryFiles(r, repo, mainBranch, mainBranchProtection);
+  const files = getRepositoryFiles(r, repo, mainBranch, mainBranchProtection);
 
   const labels = labelConfiguration.map(
     (labelConfig) =>
@@ -234,7 +234,7 @@ export const repositories = repoConfigurations.map((r) => {
     repository: repo.name,
     branches: [mainBranch.branch],
     branchProtection: [mainBranchProtection.id],
-    files: [licenseFile.file, contributingFile.file],
+    files: files.map(f=>f.file),
     labels: labels.map((l) => l.name),
   };
 });
