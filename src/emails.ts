@@ -38,17 +38,11 @@ export const spfRecord = new gandi.livedns.Record(
 
 const cfg = new pulumi.Config();
 
-const contactAlias = new ImprovMxAlias("powerd6/email/contact", {
-  alias: "contact",
+const emailAliases = new ImprovMxAlias("powerd6/email/aliasesHector", {
+  alias: "contact,billing",
   forward: "hector.zacharias@gmail.com",
   domain: rootDomain.name,
   apiKey: cfg.requireSecret("improvmx-api-key"),
 });
 
-const billingAlias = new ImprovMxAlias("powerd6/email/billing", {
-  alias: "billing",
-  forward: "hector.zacharias@gmail.com",
-  domain: rootDomain.name,
-  apiKey: cfg.requireSecret("improvmx-api-key"),
-});
-export const emails = [contactAlias, billingAlias].map((e) => e.aliasId);
+export const emails = [emailAliases.aliasId];
